@@ -1,5 +1,5 @@
-import { useRef, useState } from "react"
-import { StyleSheet, View, Button, TextInput, Alert, TouchableHighlight, Text, ScrollView } from "react-native"
+import { useState } from "react"
+import { StyleSheet, View } from "react-native"
 
 import AddItem from "./components/AddItem"
 import List from "./components/List"
@@ -8,18 +8,24 @@ export default function App() {
     const [tasks, setTasks] = useState([])
 
     const handleButton = (task) => {
-        setTasks([...tasks, task])
+        if (task !== "") {
+            setTasks((currentList) => [...currentList, { id: Math.random(), value: task }])
+        }
     }
 
     const handleClearButton = () => {
         setTasks([])
     }
 
+    const handleDeleteItem = (id) => {
+        setTasks((currentList) => currentList.filter((i) => i.id !== id))
+    }
+
     return (
         <View style={styles.container}>
             <AddItem handleAddButton={handleButton} handleClearAllButton={handleClearButton} />
 
-            <List taskList={tasks} />
+            <List taskList={tasks} deleteItemFromTasks={handleDeleteItem} />
         </View>
     )
 }

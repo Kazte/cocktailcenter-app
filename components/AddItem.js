@@ -19,8 +19,8 @@ export default AddItem = ({ handleAddButton, handleClearAllButton }) => {
     return (
         <View style={styles.inputContent}>
             <TextInput ref={textInput} style={styles.textInput} value={task} placeholder="new task..." onChangeText={setTask} />
-            <Button style={styles.button} onPress={handleOnPress} title="Add" color="#880e4f" />
-            <Button style={styles.button} onPress={handleOnClear} title="Clear" color="#880e4f" />
+            <Button onPress={handleOnPress} title="Add" color="#880e4f" />
+            <Button onPress={handleOnClear} title="Clear" color="#880e4f" />
         </View>
     )
 }
